@@ -3,16 +3,16 @@ const mysql = require('mysql2/promise');
 class MariaDBHelper {
   constructor(tableName) {
     this.config = {
-      host: process.env.DB_HOST, // Хост базы данных
-      user: process.env.DB_USER, // Имя пользователя базы данных
-      password: process.env.DB_PASSWORD, // Пароль пользователя базы данных
-      database: process.env.DB_NAME, // Имя базы данных
+      host: process.env.DB_HOST, 
+      user: process.env.DB_USER, 
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME, 
     };
     this.tableName = tableName;
     this.connection = null;
   }
 
-  // Метод подключения к базе данных
+
   async connect() {
     try {
       if (!this.connection) {
@@ -25,7 +25,7 @@ class MariaDBHelper {
     }
   }
 
-  // Метод отключения от базы данных
+
   async disconnect() {
     try {
       if (this.connection) {
@@ -38,7 +38,7 @@ class MariaDBHelper {
     }
   }
 
-  // Метод для поиска одной записи
+
   async findOne(filter) {
     try {
       await this.connect();
@@ -56,11 +56,11 @@ class MariaDBHelper {
       console.error('Error finding record:', error);
       throw error;
     } finally {
-        await this.disconnect(); // Закрываем соединение
+        await this.disconnect(); 
     }
   }
 
-  // Метод для вставки одной записи
+  
   async insertOne(document) {
     try {
       await this.connect();
@@ -79,7 +79,7 @@ class MariaDBHelper {
       console.error('Error inserting record:', error);
       throw error;
     } finally {
-        await this.disconnect(); // Закрываем соединение
+        await this.disconnect(); 
     }
   }
 
@@ -123,7 +123,7 @@ class MariaDBHelper {
       console.error('Error fetching last record:', error);
       throw error;
     } finally {
-      await this.disconnect(); // Закрываем соединение
+      await this.disconnect(); 
     }
   }
 }
